@@ -1,0 +1,17 @@
+version: '3.0'
+
+services:
+  active-backup:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    volumes:
+      - .:/home/active_backup
+    #entrypoint: /bin/sh
+    entrypoint: bash -c "service rsyslog start && service ssh restart && service vsftpd restart && /bin/sh"
+    #entrypoint: bash -c "service rsyslog start && service ssh restart && service vsftpd restart && ruby active_backup.rb --docker"
+  test:
+    build:
+      context: .
+      dockerfile: Dockerfile.base
+    entrypoint: ["ruby", "test/run_tests.rb", "--verbose"]
