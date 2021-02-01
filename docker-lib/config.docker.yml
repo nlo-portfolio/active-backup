@@ -1,0 +1,62 @@
+env:
+    # Encrypt the archive.
+    encrypt: True
+    # Password for encyrpting the arhive. For better security, leave blank and enter
+    # it in at the prompt when running the program.
+    archive_password: test
+  
+server:
+  # Label for the server (required).
+  name: Docker Server
+  # Connection type.
+  type: scp
+  # IP address of the remote server (required).
+  ip: 127.0.0.1
+  # Port to connect on the remote server (optional).
+  port: 22
+  # Username (required).
+  username: root
+  # Password (required for FTP, optional for scp/sftp).
+  password: test
+  # Seperate logfile for network connections / transfers as transfer.log.
+  seperate_logfile: true
+  # Destination folder (required).
+  dest_folder: /home/active_backup/remote_copies
+  # Timeout for server connection in seconds.
+  timeout: 30
+  
+  # Options for ssh, scp and sftp connections.
+  ssh_options:
+    # OpenSSH private key (required for SFTP and SCP).
+    # Path is relative to the root directory.
+    private_key: keys/dev
+  
+  # Options for ftp connections.
+  ftp_options:
+    # Passive or Active FTP mode (required).
+    passive: false
+  
+# List of backup tasks to process.
+tasks:
+  # Name of the task.
+  - name: 'Test Task 1'
+    # Backup interval in seconds.
+    interval: 3600
+    # Keep a local copy of the backup.
+    local_copy: False
+    # Paths (files and directories) to backup.
+    paths:
+      - <path to folder>
+  # Name of the task.
+  - name: 'Test Task 2'
+    # Backup interval in seconds.
+    interval: 3600
+    # Keep a local copy of the backup.
+    local_copy: False
+    # Paths (files and directories) to backup.
+    paths:
+      - <path to folder>
+    
+
+ 
+
